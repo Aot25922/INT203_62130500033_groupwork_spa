@@ -1,0 +1,20 @@
+{
+    "cardLists": [
+      {
+        "name": "Deny",
+        "cost": "4",
+        "effect":"cancel enemy skill",
+        "attack":"",
+        "health": "",
+        "id": 1
+      },
+      {
+        "name": "Fire Spirit",
+        "cost": "5",
+        "effect":"deal 6 damage",
+        "attack":"10",
+        "health": "10",
+        "id": 2
+      }
+    ]
+  }
