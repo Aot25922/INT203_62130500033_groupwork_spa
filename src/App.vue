@@ -1,7 +1,6 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/edit">UpdateandDelete</router-link>
     <router-link to="/add">Add Card</router-link>
   </div>
   <router-view />
@@ -11,8 +10,15 @@
 
 export default {
   name: "App",
-  components: {
-
+  provide(){
+    return{
+     url:this.url
+    }
+  },
+  data(){
+    return{
+      url: "http://localhost:5000/cardLists"
+    }
   },
 };
 </script>
