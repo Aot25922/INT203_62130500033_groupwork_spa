@@ -2,6 +2,7 @@
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/add">Add Card</router-link>
+    <router-link to="/creator">Creator Info</router-link>
   </div>
   <router-view />
 </template>

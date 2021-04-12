@@ -1,7 +1,8 @@
 <template>
   <div class="bg-red-600">
     <form @submit.prevent="submitForm">
-      <h3>Create you card</h3>
+      <h3 v-if="!Edit">Create you card</h3>
+      <h3 v-else>Edit you card</h3>
       <label class="label" for="name">Your Card Name</label>
       <input class="input" id="name" type="text" v-model="name" />
       <label class="label" for="cost">Your Card Cost</label>
@@ -36,13 +37,23 @@
         <label class="label" for="health">Health Point</label>
         <input class="input" id="health" type="number" v-model="health" />
       </div>
-      <button class="btn" @click="showData()">Submit</button>
+      <button class="btn">Submit</button>
     </form>
-    <card-list isEdit="true" @show-data='showData' ref="form"></card-list>
+    <div>
+      <button @click="Edit = !Edit" v-if="!Edit">Edit you card?</button>
+      <button @click="Edit = !Edit" v-if="Edit">Cancel edit form</button>
+    </div>
+    <card-list  isEdit="true" @show-data="showData" @delete-data="deleteCard" ref="list" v-if="Edit">
+      <template v-slot:edit>
+        <h2>Choose a card to edit :</h2>
+      </template>
+    </card-list>
   </div>
 </template>
 <script>
+
 export default {
+  name: 'Add',
   inject: ["url"],
   data() {
     return {
@@ -53,13 +64,16 @@ export default {
       health: 0,
       effect: "",
       type: "",
-      oldCard: null
+      Edit: false,
+      id: 0,
     };
   },
   methods: {
     submitForm() {
       if (this.name !== "") {
-        if (this.attack === 0 && this.health === 0) {
+        if (this.Edit) {
+          this.editCardInfo();
+        } else {
           this.addNewCard();
         }
         this.name = "";
@@ -67,26 +81,21 @@ export default {
         this.attack = 0;
         this.health = 0;
         this.effect = "";
-        this.type="";
-        console.log(this.url);
+        this.type = "";
       }
     },
-    showData(Card){
-
-      this.oldCard=Card
-      console.log(
-      this.oldCard)
-      this.name=this.oldCard.name
-      this.cost=this.oldCard.cost
-      this.type=this.oldCard.type
-      this.effect=this.oldCard.effect
-      this.attack=this.oldCard.attack
-      this.health=this.oldCard.health
-    }
-    ,
+    showData(Card) {
+      this.name = Card.name;
+      this.cost = Card.cost;
+      this.type = Card.type;
+      this.effect = Card.effect;
+      this.attack = Card.attack;
+      this.health = Card.health;
+      this.id = Card.id;
+    },
     async addNewCard() {
       try {
-         await fetch(this.url, {
+        await fetch(this.url, {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -97,15 +106,45 @@ export default {
             effect: this.effect,
             attack: this.attack,
             health: this.health,
-            type:this.type
+            type: this.type,
           }),
         });
       } catch (error) {
         console.log(error);
       }
-      this.$refs.form.setList()
+      this.$refs.list.setList();
+    },
+    async editCardInfo() {
+      try {
+        await fetch(`${this.url}/${this.id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name: this.name,
+            cost: this.cost,
+            effect: this.effect,
+            attack: this.attack,
+            health: this.health,
+            type: this.type,
+          }),
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      this.$refs.list.setList();
+    },
+    async deleteCard(card) {
+      try {
+        await fetch(`${this.url}/${card.id}`, {
+          method: "DELETE",
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      this.$refs.list.setList();
     },
   },
- 
 };
 </script>

@@ -1,166 +1,40 @@
 {
   "cardLists": [
     {
-      "name": "Deny",
-      "cost": "4",
-      "effect": "cancel enemy skill",
-      "attack": "",
-      "health": "",
-      "type": "magic",
-      "id": 1
-    },
-    {
-      "name": "Fire Spirit",
-      "cost": "5",
-      "effect": "deal 6 damage",
-      "attack": "10",
-      "health": "10",
-      "type": "creature",
-      "id": 2
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 3
-    },
-    {
-      "name": "Taapat Kankull",
-      "cost": "21",
-      "effect": "3",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 4
-    },
-    {
-      "name": "Taapat Kankull",
-      "cost": "32",
-      "effect": "fdgh",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 5
-    },
-    {
-      "name": "sdf",
-      "cost": "1",
-      "effect": "sdf",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 6
-    },
-    {
-      "name": "sdfsdf",
+      "name": "dfg",
       "cost": 0,
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "",
-      "id": 7
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 8
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 9
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 10
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 11
-    },
-    {
-      "name": "dfgdgf",
-      "cost": "2",
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "creature",
-      "id": 12
-    },
-    {
-      "name": "fddfg",
-      "cost": "45",
-      "effect": "fdgh",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 13
-    },
-    {
-      "name": "sdf",
-      "cost": 0,
-      "effect": "fsd",
-      "attack": 0,
-      "health": 0,
-      "type": "",
-      "id": 14
-    },
-    {
-      "name": "rg",
-      "cost": "2",
       "effect": "dfg",
       "attack": 0,
       "health": 0,
       "type": "magic",
-      "id": 15
+      "id": 1
     },
     {
       "name": "sdf",
       "cost": 0,
-      "effect": "fdgh",
+      "effect": "fgd",
       "attack": 0,
       "health": 0,
       "type": "magic",
-      "id": 16
+      "id": 2
+    },
+    {
+      "name": "sdfg",
+      "cost": 0,
+      "effect": "",
+      "attack": 0,
+      "health": 0,
+      "type": "magic",
+      "id": 3
     },
     {
       "name": "sdf",
       "cost": 0,
-      "effect": "sdf",
+      "effect": "",
       "attack": 0,
       "health": 0,
       "type": "magic",
-      "id": 17
-    },
-    {
-      "name": "fghfgh",
-      "cost": 0,
-      "effect": "rfgtfg",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 18
+      "id": 4
     }
   ]
 }

@@ -1,4 +1,6 @@
 <template>
+<slot name="edit"></slot>
+<h3 v-if="cardLists.length==0">You don't have any card right now</h3>
 <div class="grid grid-cols-3 ">
         <div class="relative w-64 mt-20" v-for="card in cardLists" :key="card.name">
           <div class="absolute left-4 bottom-4 bg-red-600 h-full w-full rounded-xl"></div>
@@ -6,8 +8,11 @@
             <div v-if="isEdit">
             <button class="m-1" >
                 <img @click="$emit('show-data',card)" alt="" class="bg-blue-500 m-1" src="../assets/edit.svg"/>
+            </button>
+            <button @click="$emit('delete-data',card)"     class="bg-red-500 m-1">
+                <img src="../assets/delete.svg" alt="" />
               </button>
-          </div>
+           </div>
             <div class="text-4xl font-extrabold text-white left-3 top-3 absolute">{{ card.cost }}</div>
             <p class="leading-snug text-gray-400 text-2xl">
               {{card.name}}
@@ -27,7 +32,7 @@
 <script>
 export default ({
   inject:['url'],
-  emits:['show-data'],
+  emits:['show-data','delete-data'],
   props:{
     isEdit: Boolean
   },
