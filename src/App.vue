@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="nav" class="bg-gray-200">
     <router-link to="/">Home</router-link> |
     <router-link to="/add">Add Card</router-link>
     <router-link to="/creator">Creator Info</router-link>

@@ -3,7 +3,7 @@
 <h3 v-if="cardLists.length==0">You don't have any card right now</h3>
 <div class="grid grid-cols-3 ">
         <div class="relative w-64 mt-20" v-for="card in cardLists" :key="card.name">
-          <div class="absolute left-4 bottom-4 bg-red-600 h-full w-full rounded-xl"></div>
+          <div class="absolute left-4 bottom-4 bg-yellow-500 h-full w-full rounded-xl"></div>
           <div class="relative bg-gray-800 text-gray-50 rounded-xl p-8 space-y-7">
             <div v-if="isEdit">
             <button class="m-1" >
@@ -13,11 +13,14 @@
                 <img src="../assets/delete.svg" alt="" />
               </button>
            </div>
-            <div class="text-4xl font-extrabold text-white left-3 top-3 absolute">{{ card.cost }}</div>
+            <p class="text-4xl font-extrabold text-white left-3 top-3 absolute">{{ card.cost }}</p>
+            <div>
+              <h3>{{card.type}}</h3>
+            </div>
             <p class="leading-snug text-gray-400 text-2xl">
               {{card.name}}
             </p>
-          <div v-if="card.attack!==''&&card.health!==''">
+          <div v-if="card.attack!==0&&card.health!==0">
             <p>
               {{card.attack}}
             </p>

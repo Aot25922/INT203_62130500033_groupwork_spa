@@ -1,40 +1,22 @@
 {
   "cardLists": [
     {
-      "name": "dfg",
+      "name": "dfgdfg",
       "cost": 0,
-      "effect": "dfg",
+      "effect": "",
       "attack": 0,
       "health": 0,
       "type": "magic",
       "id": 1
     },
     {
-      "name": "sdf",
+      "name": "tests",
       "cost": 0,
-      "effect": "fgd",
+      "effect": "dfg",
       "attack": 0,
       "health": 0,
       "type": "magic",
       "id": 2
-    },
-    {
-      "name": "sdfg",
-      "cost": 0,
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 3
-    },
-    {
-      "name": "sdf",
-      "cost": 0,
-      "effect": "",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 4
     }
   ]
 }
