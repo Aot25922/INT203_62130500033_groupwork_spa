@@ -1,63 +1,93 @@
 <template>
-  <div class="bg-red-600">
-    <form @submit.prevent="submitForm">
-      <h3 v-if="!Edit">Create you card</h3>
-      <h3 v-else>Edit you card</h3>
-      <label class="label" for="name">Your Card Name</label>
-      <input class="input" id="name" type="text" v-model="name" />
-      <label class="label" for="cost">Your Card Cost</label>
-      <input class="input" id="cost" type="number" v-model="cost" />
-      <label class="label" for="effect">Your Card Effect</label>
-      <input class="input" id="effect" type="text" v-model="effect" />
+  <div class="bg-zombie font-rubik h-full mt-5 rounded-lg py-6" :class="{'bg-sweet':Edit}">
+    <form @submit.prevent="submitForm" class="">
+      <h3 v-if="!Edit" class="text-5xl  uppercase font-extrabold ">Create you card</h3>
+      <h3 v-else class="text-5xl uppercase font-extrabold">Edit you card</h3>
+      <div class="py-4">
+        <label class="label" for="name">Your Card Name</label>
+        <input class="input " id="name" type="text" v-model="name" @blur="validateNameInput"/>
+        <p v-if="invalidNameInput" class="font-semibold text-yellow-300">Please enter you card name!</p>
+      </div>
+      <div class="py-1">
+        <label class="label" for="cost">Your Card Cost</label>
+        <input class="input " id="cost" type="number" v-model="cost" min="0" />
+      </div>
+      <!----------------------------------------------------------------------------------------------------------->
       <div>
         <input
           type="radio"
           name="type"
           id="magic"
-          value="magic"
+          value="MAGIC"
           v-model="type"
-          @click="isCreature = false"
+          @click="isCreature = false;"
         />
         <label class="label" for="magic">Magic</label>
-      </div>
-      <div>
         <input
           type="radio"
           name="type"
           id="creature"
-          value="creature"
+          value="CREATURE"
           v-model="type"
-          @click="isCreature = true"
+          @click="
+            isCreature = true;
+          "
         />
         <label class="label" for="creature">Creature</label>
+
+        <div v-if="isCreature" class="py-4">
+          <label class="label" for="attack">Attack Power</label>
+          <input
+            class="input"
+            id="attack"
+            type="number"
+            v-model="attack"
+            min="0"
+          />
+          <label class="label" for="health">Health Point</label>
+          <input
+            class="input"
+            id="health"
+            type="number"
+            v-model="health"
+            min="1"
+          />
+        </div>
+        <p v-if="type===''" class="font-semibold text-yellow-300">Please choose a card type!</p>
       </div>
-      <div v-if="isCreature">
-        <label class="label" for="attack">Attack Power</label>
-        <input class="input" id="attack" type="number" v-model="attack" />
-        <label class="label" for="health">Health Point</label>
-        <input class="input" id="health" type="number" v-model="health" />
+      <!----------------------------------------------------------------------------------------------------------->
+      <div id="effectZone">
+         <label for="cardEffect" class="label">Input you card effect</label>
+         <input type="text" v-model="effect" id="cardEffect" class="input"/>
+         <p v-if="isMagic" class="font-semibold text-yellow-300">It magic must have effect</p>
       </div>
-      <button class="btn">Submit</button>
+      <nice-button class="mt-6" :class="{'edit':Edit}">Submit</nice-button>
     </form>
-    <div>
-      <button @click="Edit = !Edit" v-if="!Edit">Edit you card?</button>
-      <button @click="Edit = !Edit" v-if="Edit">Cancel edit form</button>
+    <div class="">
+      <nice-button @click="Edit = !Edit" v-if="!Edit">Edit you card?</nice-button>
+      <nice-button @click="Edit = !Edit" v-if="Edit" :class="{'edit':Edit}">Cancel edit form</nice-button>
     </div>
-    <card-list  isEdit="true" @show-data="showData" @delete-data="deleteCard" ref="list" v-if="Edit">
+    <card-list
+      isEdit="true"
+      @show-data="showData"
+      @delete-data="deleteCard"
+      ref="list"
+      v-if="Edit"
+    >
       <template v-slot:edit>
-        <h2>Choose a card to edit :</h2>
+        <h2 class="font-bold text-5xl">Choose a card to edit or delete :</h2>
       </template>
     </card-list>
   </div>
 </template>
 <script>
-
+import nicebutton from '../components/niceButton.vue'
 export default {
-  name: 'Add',
+  name: "Add",
+  component:['nice-button',nicebutton],
   inject: ["url"],
   data() {
     return {
-      isCreature: false,
       name: "",
       cost: 0,
       attack: 0,
@@ -65,23 +95,56 @@ export default {
       effect: "",
       type: "",
       Edit: false,
+      haveEffect: true,
+      isCreature: false,
       id: 0,
+      invalidNameInput : false,
+      isMagic:false
     };
   },
   methods: {
+    checkEffect(){
+     if(this.type==='MAGIC'){
+       if(this.effect==''){
+         this.isMagic=true
+       }
+       else{
+         this.isMagic=false
+       }
+     }else{
+       this.isMagic=false
+     }
+    },
+    validateNameInput() {
+      this.invalidNameInput = this.name === '' ? true : false
+    },
     submitForm() {
-      if (this.name !== "") {
+     this.checkEffect()
+      if (this.name !== "" && this.type !== "" && !this.isMagic) {
         if (this.Edit) {
           this.editCardInfo();
+          this.name = "";
+          this.cost = 0;
+          this.attack = 0;
+          this.health = 0;
+          this.effect = "";
+          this.type = "";
+          this.isCreature=false
+          this.invalidEffectInput=true
         } else {
           this.addNewCard();
+          this.name = "";
+          this.cost = 0;
+          this.attack = 0;
+          this.health = 0;
+          this.effect = "";
+          this.type = "";
+          this.isCreature=false
+          this.invalidEffectInput=true
         }
-        this.name = "";
-        this.cost = 0;
-        this.attack = 0;
-        this.health = 0;
-        this.effect = "";
-        this.type = "";
+      }else{
+        alert("Please complete you input")
+        this.validateNameInput()
       }
     },
     showData(Card) {
@@ -112,7 +175,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
-      this.$refs.list.setList();
+      alert("New card add to collection check it at home page!");
     },
     async editCardInfo() {
       try {

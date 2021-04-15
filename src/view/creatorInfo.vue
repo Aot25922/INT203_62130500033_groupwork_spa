@@ -1,59 +1,100 @@
 <template>
-  <div v-if="!isEdit">
+  <div v-if="!isEdit" class="font-rubik bg-sky">
     <h3>Creator Info</h3>
-    <img :src="image" />
-    <p>Username : {{ name }}</p>
-    <p>E-mail : {{ email }}</p>
-    <p>You Country/Region : {{ region }}</p>
-    <p>You Birthdate : {{ date }}</p>
-    <nice-button @click="isEdit = !isEdit"><span>Edit you profile</span></nice-button>
+    <p class="label">Username : {{ this.name }}</p>
+    <p class="label">E-mail : {{ this.email }}</p>
+    <p class="label">You Country/Region : {{ this.region }}</p>
+    <p class="label">You Birthdate : {{ this.date }}</p>
+    <nice-button @click="isEdit = !isEdit"
+      ><span>Edit you profile</span></nice-button
+    >
   </div>
-  <div v-else>
-    <form>
+  <div v-else class="bg-nice-orange">
+    <form @submit.prevent="submitForm()">
       <label for="name" class="label">Username :</label>
-      <input class="input" id="name" type="text" v-model="name" />
+      <input class="input" id="name" type="text" v-model="this.name" />
+      <p v-if="invalidNameInput">Username must not blank!</p>
       <label for="email" class="label">E-mail:</label>
-      <input class="input" id="email" type="email" v-model="email" />
+      <input class="input" id="email" type="email" v-model="this.email" />
+      <p v-if="invalidEmailInput"></p>
       <label for="region" class="label">You Country/Region :</label>
-      <input class="input" id="region" type="text" v-model="region" />
+      <input class="input" id="region" type="text" v-model="this.region" />
       <label for="region" class="label">You Birthdate :</label>
-      <input class="input" id="region" type="date" v-model="date" />
-      <nice-button @click="isEdit = !isEdit"><span>Confirm You Edit</span></nice-button>
-    <h2>Select an image</h2>
-    <input type="file" @change="onFileChange">
+      <input class="input" id="region" type="date" v-model="this.date" />
+      <nice-button><span>Confirm You Edit</span></nice-button>
     </form>
   </div>
 </template>
 <script>
 // @ is an alias to /sr
 export default {
-  name: "creator",
+  name: "Creator",
   data() {
     return {
-      name: "",
-      email: "",
-      region: "",
-      date: "",
-      image:"",
       isEdit: false,
+      url: "http://localhost:5000/profile",
+      user: null,
+      invalidNameInput: false,
+      invalidEmailInput: false,
+      name:"",
+      email:"",
+      region:"",
+      date:""
     };
   },
-  methods : {
-    onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length)
-        return;
-      this.createImage(files[0]);
+  methods: {
+    submitForm() {
+      this.validateNameInput();
+      this.validateEmailInput();
+      if (!this.invalidNameInput && !this.invalidEmailInput) {
+        this.editInfo();
+        this.isEdit = false;
+      }
     },
-    createImage(file) {
-      this.img = new Image();
-      var reader = new FileReader();
-
-      reader.onload = (e) => {
-        this.image = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    validateNameInput() {
+      this.invalidNameInput = this.name === "" ? true : false;
     },
-  }
+    validateEmailInput() {
+      this.invalidEmailInput = this.email === "" ? true : false;
+    },
+    showdata(){
+      this.name=this.user.username
+      this.email=this.user.email
+      this.region=this.user.region
+      this.date=this.user.date
+    }
+    ,
+    async getInfo() {
+      try {
+        const res = await fetch(this.url);
+        const data = await res.json();
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async editInfo() {
+      try {
+        await fetch(`${this.url}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            username: this.user.username,
+            email: this.user.email,
+            region: this.user.region,
+            date: this.user.date,
+          }),
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  async created() {
+    this.user = await this.getInfo();
+     this.showdata()
+  },
 };
 </script>

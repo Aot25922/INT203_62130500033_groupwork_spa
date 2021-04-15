@@ -1,22 +1,28 @@
 {
   "cardLists": [
     {
-      "name": "dfgdfg",
-      "cost": 0,
-      "effect": "",
+      "name": "Fire Bolt",
+      "cost": "2",
+      "effect": "deal 8 damage",
       "attack": 0,
       "health": 0,
-      "type": "magic",
-      "id": 1
+      "type": "MAGIC",
+      "id": 5
     },
     {
-      "name": "tests",
-      "cost": 0,
-      "effect": "dfg",
-      "attack": 0,
-      "health": 0,
-      "type": "magic",
-      "id": 2
+      "name": "Deal Spirit",
+      "cost": "1",
+      "effect": "",
+      "attack": "1",
+      "health": "1",
+      "type": "CREATURE",
+      "id": 6
     }
-  ]
+  ],
+  "profile": {
+    "username": "Suda",
+    "email": "aot25922@hotmail.com",
+    "region": "-",
+    "date": "2021-04-18"
+  }
 }

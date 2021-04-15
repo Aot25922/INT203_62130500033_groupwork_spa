@@ -1,10 +1,10 @@
 <template>
-  <div id="nav" class="bg-gray-200">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/add">Add Card</router-link>
-    <router-link to="/creator">Creator Info</router-link>
+  <div  class="bg-sage font-rubik flex justify-end divide-x-4 rounded-lg">
+    <router-link to="/" class="nav">Home</router-link>
+    <router-link to="/add" class="nav">Add Card</router-link>
+    <router-link to="/creator" class="nav">Creator Info</router-link>
   </div>
-  <router-view />
+  <router-view/>
 </template>
 
 <script>
@@ -26,7 +26,6 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

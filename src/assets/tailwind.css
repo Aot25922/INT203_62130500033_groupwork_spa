@@ -3,3 +3,20 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.nav{
+    @apply text-2xl px-6 py-3 text-dark-angel font-extrabold hover:text-opacity-25
+}
+
+.label{
+    @apply text-2xl font-bold px-2 
+}
+
+.input{
+    @apply text-2xl font-bold px-2 text-teal-blue
+}
+
+.edit{
+    @apply hover:bg-zombie
+}
+

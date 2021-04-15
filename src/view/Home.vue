@@ -1,10 +1,9 @@
 <template>
-  <div class="">
+  <div class="font-rubik">
     <card-list></card-list>
   </div>
 </template>
 <script>
-// @ is an alias to /src
 
 export default {
   name: "Home",
