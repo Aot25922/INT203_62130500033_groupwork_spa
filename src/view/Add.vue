@@ -5,12 +5,12 @@
       <h3 v-else class="text-5xl uppercase font-extrabold">Edit you card</h3>
       <div class="py-4">
         <label class="label" for="name">Your Card Name</label>
-        <input class="input " id="name" type="text" v-model="name" @blur="validateNameInput"/>
+        <input class="input " id="name" type="text" v-model="name" @blur="validateNameInput" :class="{'editInput':Edit}" />
         <p v-if="invalidNameInput" class="font-semibold text-yellow-300">Please enter you card name!</p>
       </div>
       <div class="py-1">
         <label class="label" for="cost">Your Card Cost</label>
-        <input class="input " id="cost" type="number" v-model="cost" min="0" />
+        <input class="input " id="cost" type="number" v-model="cost" min="0" :class="{'editInput':Edit}" />
       </div>
       <!----------------------------------------------------------------------------------------------------------->
       <div>
@@ -43,6 +43,7 @@
             type="number"
             v-model="attack"
             min="0"
+            :class="{'editInput':Edit}"
           />
           <label class="label" for="health">Health Point</label>
           <input
@@ -51,6 +52,7 @@
             type="number"
             v-model="health"
             min="1"
+            :class="{'editInput':Edit}"
           />
         </div>
         <p v-if="type===''" class="font-semibold text-yellow-300">Please choose a card type!</p>
@@ -58,7 +60,7 @@
       <!----------------------------------------------------------------------------------------------------------->
       <div id="effectZone">
          <label for="cardEffect" class="label">Input you card effect</label>
-         <input type="text" v-model="effect" id="cardEffect" class="input"/>
+         <input type="text" v-model="effect" id="cardEffect" class="input" :class="{'editInput':Edit}"/>
          <p v-if="isMagic" class="font-semibold text-yellow-300">It magic must have effect</p>
       </div>
       <nice-button class="mt-6" :class="{'edit':Edit}">Submit</nice-button>

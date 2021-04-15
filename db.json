@@ -1,19 +1,46 @@
 {
   "cardLists": [
     {
-      "name": "Fire Bolt",
-      "cost": "2",
-      "effect": "deal 8 damage",
+      "name": "Firebolt",
+      "cost": "1",
+      "effect": "deal 1 damage to a creature or nexus",
       "attack": 0,
       "health": 0,
       "type": "MAGIC",
-      "id": 5
+      "id": 1
     },
     {
-      "name": "Deal Spirit",
+      "name": "Goblin",
       "cost": "1",
       "effect": "",
       "attack": "1",
+      "health": "1",
+      "type": "CREATURE",
+      "id": 2
+    },
+    {
+      "name": "Shura , The dragon slayer",
+      "cost": "8",
+      "effect": "When summon this creature deal 4d6 damage to all enemy creature",
+      "attack": "8",
+      "health": "7",
+      "type": "CREATURE",
+      "id": 3
+    },
+    {
+      "name": "Divine Smite Lv.1",
+      "cost": "2",
+      "effect": "Grant 1 creature to deal 3d8 this round",
+      "attack": 0,
+      "health": 0,
+      "type": "MAGIC",
+      "id": 4
+    },
+    {
+      "name": "Taapat Kankull",
+      "cost": 0,
+      "effect": "When summon this  but if you can do any every test master96creature deal 4d6 damage to all enemy creature",
+      "attack": 0,
       "health": "1",
       "type": "CREATURE",
       "id": 6
@@ -21,7 +48,7 @@
   ],
   "profile": {
     "username": "Suda",
-    "email": "aot25922@hotmail.com",
+    "email": "aottanapat25922@gmail.com",
     "region": "-",
     "date": "2021-04-18"
   }

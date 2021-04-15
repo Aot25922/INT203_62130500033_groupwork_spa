@@ -1,6 +1,6 @@
 <template>
   <slot name="edit"></slot>
-  <h3 v-if="cardLists.length == 0" class="text-5xl  uppercase font-extrabold ">You don't have any card right now !</h3>
+  <h3 v-if="cardLists.length == 0" class="text-center text-5xl uppercase font-extrabold text-devy-gray py-20">You don't have any card right now</h3>
   <div class="grid grid-cols-3 px-2 justify-items-stretch gap-y-4">
     <div
       class="relative w-64 mt-20 md:justify-self-center"
@@ -11,7 +11,7 @@
         class="absolute left-4 bottom-4 bg-deep h-full w-full rounded-xl"
       ></div>
       <div
-        class="relative bg-devy-gray text-gray-50 rounded-xl p-5 space-y-7 h-full" :class="{'bg-my-magenta':card.type==='MAGIC'}"
+        class="relative bg-devy-gray text-gray-50 rounded-xl p-5 space-y-9 h-full" :class="{'bg-my-magenta':card.type==='MAGIC'}"
       >
         <div class="">
           <p class="text-4xl font-extrabold text-white left-1 top-1 absolute">
@@ -38,14 +38,14 @@
           <h3 class="text-4xl">{{ card.type }}</h3>
         </div>
         <div class="space-y-3">
-        <p class="text-3xl break-all ">
+        <p class="text-3xl  overflow-ellipsis">
           {{ card.name }}
         </p>
-        <div class="bg-teal-blue ring-4 rounded-md py-3" >
+        <div class="bg-teal-blue ring-4 rounded-md py-3" style="margin-bottom:4rem">
           <p v-if="card.effect == ''" >No Effect</p>
-          <p v-else class="break-all ">Effect: {{ card.effect }}</p>
+          <p v-else class="overflow-ellipsis px-2">Effect: {{ card.effect }}</p>
         </div>
-        <div v-if="card.attack !== 0 && card.health !== 0" class="flex justify-around text-5xl font-extrabold pt-2">
+        <div v-if="card.health !== 0" class="flex justify-around text-5xl font-extrabold pt-2 absolute  bottom-2 ">
           <p class="bg-celadon-blue  rounded-md  px-10 py-0.5  border-2">
             {{ card.attack }}
           </p>

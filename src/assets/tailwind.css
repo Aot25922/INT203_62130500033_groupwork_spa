@@ -13,10 +13,14 @@
 }
 
 .input{
-    @apply text-2xl font-bold px-2 text-teal-blue
+    @apply text-2xl font-bold px-2 text-teal-blue focus:ring-4 focus:ring-red-salsa  rounded-lg focus:outline-none
 }
 
 .edit{
     @apply hover:bg-zombie
+}
+
+.editInput{
+    @apply  focus:ring-zombie  
 }
 
